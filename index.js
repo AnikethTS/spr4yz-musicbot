@@ -1,6 +1,6 @@
 import { Client, GatewayIntentBits } from "discord.js";
 import { DisTube } from "distube";
-import { YtDlpPlugin } from "@distube/yt-dlp";   // <-- fixed plugin
+import { YtDlpPlugin } from "@distube/yt-dlp";
 import keepAlive from "./keep_alive.js";
 
 keepAlive();
@@ -14,12 +14,9 @@ const client = new Client({
   ],
 });
 
-// Distube with yt-dlp (best + stable)
+// DisTube + yt-dlp (only plugins allowed)
 client.distube = new DisTube(client, {
-  plugins: [new YtDlpPlugin()],
-  emitNewSongOnly: true,
-  leaveOnStop: false,
-  leaveOnFinish: true,
+  plugins: [new YtDlpPlugin()]
 });
 
 client.once("ready", () => {
