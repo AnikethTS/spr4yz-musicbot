@@ -1,3 +1,4 @@
+process.env.DAVEY = "false";
 import { Client, GatewayIntentBits } from "discord.js";
 import { DisTube } from "distube";
 import { YtDlpPlugin } from "@distube/yt-dlp";
