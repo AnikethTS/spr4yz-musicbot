@@ -3,12 +3,14 @@
   "version": "1.0.0",
   "type": "module",
   "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js"
+  },
   "dependencies": {
-    "@distube/yt-dlp": "^2.0.1",
-    "@distube/ytdl-core": "^4.16.12",
-    "@snazzah/davey": "^0.1.7",
     "discord.js": "^14.14.1",
     "distube": "^5.0.3",
+    "@distube/yt-dlp": "^2.0.1",
     "express": "^4.18.2",
     "opusscript": "^0.0.8",
     "yt-dlp-exec": "^1.0.2"
