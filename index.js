@@ -1,6 +1,6 @@
 import { Client, GatewayIntentBits } from "discord.js";
 import { DisTube } from "distube";
-import { YouTubePlugin } from "@distube/youtube";
+import { YtDlpPlugin } from "@distube/yt-dlp";   // <-- fixed plugin
 import keepAlive from "./keep_alive.js";
 
 keepAlive();
@@ -14,22 +14,27 @@ const client = new Client({
   ],
 });
 
+// Distube with yt-dlp (best + stable)
 client.distube = new DisTube(client, {
-  plugins: [new YouTubePlugin()]
+  plugins: [new YtDlpPlugin()],
+  emitNewSongOnly: true,
+  leaveOnStop: false,
+  leaveOnFinish: true,
 });
 
-client.on("clientReady", () => {
+client.once("ready", () => {
   console.log(`🎵 Logged in as ${client.user.tag}`);
 });
 
+// Music commands
 client.on("messageCreate", async (message) => {
   if (message.author.bot) return;
 
   if (message.content.startsWith("!play")) {
+    const song = message.content.replace("!play ", "");
+
     if (!message.member.voice.channel)
       return message.reply("❌ Join a voice channel first!");
-
-    const song = message.content.replace("!play ", "");
 
     try {
       await client.distube.play(message.member.voice.channel, song, {
